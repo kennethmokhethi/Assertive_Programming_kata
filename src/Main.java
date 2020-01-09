@@ -1,39 +1,43 @@
 
+
+import java.util.Scanner;
+
 public class Main {
 
-  public static String[] letters =new String[]{"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o",
-                                                "p","q","r","s","t","u","v","w","x","y","z"};
+  //public static char[] letters ={'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 
+
+
+
+          //new String[]{"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o",
+          //                                                "p","q","r","s","t","u","v","w","x","y","z"};
   public static String[] morse = new String[]{ ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..",
           ".---", "-.-", ".-..", "--", "-.", "---", ".---.", "--.-", ".-.",
           "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", ".----",
           "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----.",
           "-----", "--..--", ".-.-.-", "..--.." };
 
-  private static int findindex(String chart){
 
-  int index_of_char=0;
-    for(int i=0;i<letters.length;i++)
-    {
-      if(chart==letters[i])
-      {
-        index_of_char= i;
-      }
-    }
-    return index_of_char;
-  }
 
-  private static String letterstoMorse(String words)
+  private static String letterstoMorse(String word)
   {
-    String[] word =words.split(" ");
+
+     word = word.toLowerCase();
     String morseletter=" ";
-    for(int i=0;i<word.length;i++)
+    if(word.matches("^\\s*$"))
     {
-      int index_of_char_in_word=findindex(word[i]);
-      if(word[i]==" "){
+      word = word.replace("/"," ");
+    }
+
+    //For each loop
+    for(char i: word.toCharArray())
+    {
+   //   int index_of_char_in_word=findindex(i);
+      if(i==32){
+
         morseletter+=" "+"/"+" ";
       }else{
-        morseletter+=morse[i]+" ";
+        morseletter+=morse[i-'a']+" ";
       }
     }
       return morseletter;
@@ -47,6 +51,11 @@ public class Main {
 
     public static void main(String[] args)
     {
-      System.out.println(letterstoMorse("hi go"));
+      Scanner scan = new Scanner(System.in);
+      System.out.println("Enter word");
+      String word=scan.nextLine();
+
+      String res=letterstoMorse(word);
+      System.out.println(res);
     }
 }
