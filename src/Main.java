@@ -51,11 +51,14 @@ public class Main {
      for(int k = 0;k < morse.length; k++)
      {
       boolean check = words[i].equals(morse[k]);
+      boolean is_forward_slash = words[i].equals("");
        if(check)
        {
          sentence+=letters[k];
-       }else if((words[i]=="/") || (words[i]=="")){
+         break;
+       }else if(is_forward_slash){
          sentence += " ";
+         break;
        }
      }
    }
