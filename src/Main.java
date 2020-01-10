@@ -33,7 +33,7 @@ public class Main {
     for(char i: word.toCharArray())
     {
       if(i == 32){ //Number 32 represent a forward slash in ascii table
-        morseletter+=" " + "/" + " ";
+        morseletter+= "/" + " ";
       }else{
         morseletter += morse[i - 'a'] + " ";
       }
@@ -41,6 +41,7 @@ public class Main {
       return morseletter;
   }
 
+  //A function that converts morse code to readable text
   private static String morseCodetoLetters(String word)
   {
    String[] words = word.split(" ");
@@ -49,7 +50,8 @@ public class Main {
    {
      for(int k = 0;k < morse.length; k++)
      {
-       if(words[i]==morse[k])
+      boolean check = words[i].equals(morse[k]);
+       if(check)
        {
          sentence+=letters[k];
        }else if((words[i]=="/") || (words[i]=="")){
